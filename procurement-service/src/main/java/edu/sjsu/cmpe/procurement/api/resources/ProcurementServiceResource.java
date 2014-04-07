@@ -15,11 +15,34 @@ public class ProcurementServiceResource {
 	{
 		this.client=client;
 	}
-	
-	void doGet(){
+	void doPostServer()
+	{
+		try{
+			client=Client.create();
+			
+			WebResource webResource=client.resource("http://54.193.56.218:9000/orders");
+			String msg="{\"singer\":\"Metallica\",\"title\":\"Fade To Black\"}";
+			ClientResponse response=webResource.type("application/json").post(ClientResponse.class,msg);
+			
+			if (response.getStatus() != 201) {
+				throw new RuntimeException("Failed : HTTP error code : "
+				     + response.getStatus());
+			}
+			System.out.println("Output from Server .... \n");
+			String output = response.getEntity(String.class);
+			System.out.println(output);
+		}
+		
+			
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	void doHttpGet(){
 	try {
 		client = Client.create();
-		System.out.println("in side try");
 		WebResource webResource=client.resource("http://54.193.56.218:9000/orders/15566");
 		ClientResponse response = webResource.accept("application/json")
 				.get(ClientResponse.class);
@@ -52,39 +75,4 @@ public class ProcurementServiceResource {
 	}
 }
 	
-	void doPost()
-	{
-		try{
-			client=Client.create();
-			
-			WebResource webResource=client.resource("http://54.193.56.218:9000/orders");
-			String msg="{\"singer\":\"Metallica\",\"title\":\"Fade To Black\"}";
-			ClientResponse response=webResource.type("application/json").post(ClientResponse.class,msg);
-			
-			if (response.getStatus() != 201) {
-				throw new RuntimeException("Failed : HTTP error code : "
-				     + response.getStatus());
-			}
-			System.out.println("Output from Server .... \n");
-			String output = response.getEntity(String.class);
-			System.out.println(output);
-		}
-		
-			
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
 }
-
-
-
-//for(int i=0;i<4;i++)
-//{
-//	int arr[] = new int[4];
-//	arr[i]=i+1;
-//	JSONArray myjsonarray=new JSONArray(Arrays.asList(arr));
-//	System.out.println(myjsonarray.get(i));
-//	
-//}

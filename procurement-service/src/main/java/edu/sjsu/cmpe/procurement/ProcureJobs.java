@@ -39,17 +39,17 @@ public class ProcureJobs extends Job{
 		//4 publisher
 		System.out.println("Job started");
 		
-		ProcureJobs a=new ProcureJobs();
+		ProcureJobs pj =new ProcureJobs();
 		try{
 			System.out.println("Creating job for consumer");
 			//taking jobs the from consumer process
-			String str_consumer = a.consumer();
+			String str_consumer = pj.consumer();
 			if(str_consumer!=null)
 			{
-				a.domsgpost(str_consumer);
+				pj.domsgpost(str_consumer);
 			}
-			ArrayList<String>books=a.getBooksFromPulisher();
-			a.publisher(books);
+			ArrayList<String>books=pj.getBooksFromPulisher();
+			pj.publisher(books);
 		}
 		catch(Exception e){e.printStackTrace();}
     }
@@ -57,14 +57,14 @@ public class ProcureJobs extends Job{
 		
 	public String consumer() throws JMSException{
 
-		String user ="admin";
+		String userName ="admin";
 		String password ="password";
 		String host = "54.193.56.218";
 		int port = Integer.parseInt("61613");
 		System.out.println("executing consumer process");
 		StompJmsConnectionFactory factory = new StompJmsConnectionFactory();
 		factory.setBrokerURI("tcp://" + host + ":" + port);
-		Connection conn = factory.createConnection(user, password);
+		Connection conn = factory.createConnection(userName, password);
 		conn.start();
 		Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
 		Destination dest = new StompJmsDestination("/queue/15566.book.orders");
@@ -173,7 +173,7 @@ public class ProcureJobs extends Job{
 
     	public void publisher(ArrayList<String>books) throws JMSException
     	{
-    		String user = "admin";
+    		String userName = "admin";
     		String password = "password";
     		String host = "54.193.56.218";
     		int port = Integer.parseInt("61613");
@@ -183,7 +183,7 @@ public class ProcureJobs extends Job{
     		StompJmsConnectionFactory factory = new StompJmsConnectionFactory();
     		factory.setBrokerURI("tcp://" + host + ":" + port);
 
-    		Connection conn = factory.createConnection(user, password);
+    		Connection conn = factory.createConnection(userName, password);
     		conn.start();
     		Session session = conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
     		

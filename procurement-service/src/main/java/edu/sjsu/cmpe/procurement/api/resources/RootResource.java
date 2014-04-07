@@ -24,7 +24,7 @@ public class RootResource {
     @Timed(name = "get-root")
     public Response getRoot() {
 ProcurementServiceResource res =new ProcurementServiceResource();
-res.doGet();
+res.doHttpGet();
 	return Response.ok().build();
     }
     @POST
@@ -32,7 +32,7 @@ res.doGet();
     public Response getrootdopost()
     {
     	ProcurementServiceResource res =new ProcurementServiceResource();
-    	res.doPost();
+    	res.doPostServer();
     	return Response.ok().build();
     }
 }
