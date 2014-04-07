@@ -31,9 +31,29 @@
 			<version>${dropwizard.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.yammer.dropwizard</groupId>
-			<artifactId>dropwizard-views</artifactId>
-			<version>${dropwizard.version}</version>
+            <groupId>com.yammer.dropwizard</groupId>
+            <artifactId>dropwizard-views</artifactId>
+            <version>${dropwizard.version}</version>
+        </dependency>
+        <dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>apollo-stomp</artifactId>
+			<version>1.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-core</artifactId>
+		<version>5.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-jms_1.1_spec</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fusesource.stompjms</groupId>
+			<artifactId>stompjms-client</artifactId>
+			<version>1.13</version>
 		</dependency>
 	</dependencies>
 
