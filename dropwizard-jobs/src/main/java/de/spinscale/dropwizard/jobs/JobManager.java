@@ -49,7 +49,7 @@ public class JobManager implements Managed {
         // anyone got a better solution?
         Thread.sleep(100);
 
-        scheduler.shutdown(true);
+      //  scheduler.shutdown(true);
     }
 
     private void scheduleAllJobsOnApplicationStop() throws SchedulerException {
